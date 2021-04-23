@@ -20,9 +20,7 @@ function GetAllMakesAPI() {
     []
     );
 
-    return useObserver(() => (
-        <div>GetAllMakes Ran: {store.allMakes.Results ? store.allMakes.Results[0].Make_Name : "loading"}</div>
-    ));
+    return null;
 }
 
 export default GetAllMakesAPI;
