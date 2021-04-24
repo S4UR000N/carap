@@ -5,12 +5,16 @@ import StoreContext from "./StoreContext"
 export function StoreProvider({children}) {
     const store = useLocalObservable(() => ({
         allMakes: false,
+        allMakesBuild: false,
         setAllMakes: allMakes => {
             store.allMakes = allMakes;
         },
-        // get lol() {
-        //     return store.allMakes;
-        // }
+        setAllMakesBuild: allMakesBuild => {
+            store.allMakesBuild = allMakesBuild;
+        },
+        // get getResults() {
+        //     return store.allMakes.Results;
+        // },
 
     }));
     return (

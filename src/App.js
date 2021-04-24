@@ -5,7 +5,6 @@ import Header from "./components/Header";
 
 import {StoreProvider} from "./stores/StoreProvider"
 
-import BuildAllMakesService from "./services/BuildAllMakesService"
 import DisplayAllMakes from "./components/DisplayAllMakes";
 
 // import { makeObservable, observable, computed, action } from "mobx"
@@ -15,8 +14,6 @@ function App() {
         <StoreProvider>
             <main className="App">
                 <Header />
-                {/* <GetAllMakesAPI /> // this should not be here */}
-                <BuildAllMakesService />
                 <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
             </main>
         </StoreProvider>
