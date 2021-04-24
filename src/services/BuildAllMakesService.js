@@ -17,8 +17,8 @@ function BuildAllMakesService() {
                 return (
 
                     <tr key={obj.Make_Name}>
-                        <td key={obj.Make_Name}>{index}</td>
-                        <td key={obj.Make_Name}>{obj.Make_ID}</td>
+                        <td key={index}>{index}</td>
+                        <td key={obj.Make_ID}>{obj.Make_ID}</td>
                         <td key={obj.Make_Name}>{obj.Make_Name}</td>
                     </tr>
 
@@ -31,31 +31,7 @@ function BuildAllMakesService() {
 
 
     return useObserver(() => (
-        <>
-            {
-                store.allMakes.Results
-                ?
-                    <>
-                        {store.allMakesBuild}
-                    </>
-                    :
-                    <tr>
-                        <td>
-                            {
-                                store
-                                ?
-                                store.allMakes.Results
-                                    ?
-                                    store.allMakesBuild
-                                    :
-                                    "loading"
-                                :
-                                "this does nothing but code breaks without it"
-                            }
-                        </td>
-                    </tr>
-            }
-        </>
+        <>{ store.allMakes.Results ? <>{store.allMakesBuild}</> : "loading" }</>
     ));
 }
 
