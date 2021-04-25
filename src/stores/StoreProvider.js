@@ -6,6 +6,7 @@ export function StoreProvider({children}) {
     const store = useLocalObservable(() => ({
         allMakes: false,
         allMakesBuild: false,
+        allMakesChunked: false,
         setAllMakes: allMakes => {
             store.allMakes = allMakes;
         },

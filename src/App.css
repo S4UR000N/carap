@@ -2,3 +2,5 @@
     width: 56px;
     height: 46px;
 }
+.table th { text-align: center; }
+.table td { text-align: center; }
