@@ -13,6 +13,9 @@ export function StoreProvider({children}) {
         setAllMakesBuild: allMakesBuild => {
             store.allMakesBuild = allMakesBuild;
         },
+        setAllMakesChunked: allMakesChunked => {
+            store.allMakesChunked = allMakesChunked;
+        },
         // get getResults() {
         //     return store.allMakes.Results;
         // },
