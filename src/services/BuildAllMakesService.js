@@ -1,8 +1,11 @@
-import { React, useEffect } from "react";
+import { React, useEffect } from "react"
 import {useObserver} from "mobx-react"
 import {useStore} from "./../stores/StoreProvider"
-import GetAllMakesAPI from "./../api/GetAllMakesAPI";
-import parse from "html-react-parser"
+import Row from 'react-bootstrap/Row'
+import Spinner from 'react-bootstrap/Spinner'
+import GetAllMakesAPI from "./../api/GetAllMakesAPI"
+import "./../extensions/ArrayPrototypeChunk"
+
 
 function BuildAllMakesService() {
     const store = useStore();
@@ -15,13 +18,11 @@ function BuildAllMakesService() {
         if(!!(store.allMakes)) { // zašto moram imati !!() da bi if radio
             store.setAllMakesBuild(store.allMakes.Results.map((obj, index) => {
                 return (
-
                     <tr key={obj.Make_Name}>
-                        <td key={index}>{index}</td>
+                        <td key={index}>{index+1}</td>
                         <td key={obj.Make_ID}>{obj.Make_ID}</td>
                         <td key={obj.Make_Name}>{obj.Make_Name}</td>
                     </tr>
-
                 );
             }));
         }
@@ -31,7 +32,15 @@ function BuildAllMakesService() {
 
 
     return useObserver(() => (
-        <>{ store.allMakes.Results ? <>{store.allMakesBuild}</> : "loading" }</>
+        <>
+            {
+                store.allMakes.Results
+                ? <>{store.allMakesBuild}</>
+                : <Spinner animation="border" role="status" className="align-items-center">
+                      <span className="sr-only">Loading...</span>
+                  </Spinner>
+            }
+        </>
     ));
 }
 

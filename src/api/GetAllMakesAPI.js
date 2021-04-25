@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect } from "react"
 import {useObserver} from "mobx-react"
 import {useStore} from "./../stores/StoreProvider"
 
@@ -11,7 +11,6 @@ function GetAllMakesAPI() {
                     const res = await fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json");
                     const data = await res.json();
                     await store.setAllMakes(data);
-                    // await console.log(store.allMakes);
                 }
                 catch {
                     console.log("bzzz 🐝");
