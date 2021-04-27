@@ -16,10 +16,13 @@ export function StoreProvider({children}) {
         setAllMakesChunked: allMakesChunked => {
             store.allMakesChunked = allMakesChunked;
         },
+        getChunkCount: singleChunkLength => {
+            let chunkCount = Number(store.allMakes.Count) / Number(singleChunkLength);
+            return chunkCount.toString().split('.').reduce((acc, val, i) => (i ? Number(acc) + 1 : acc));
+        },
         // get getResults() {
         //     return store.allMakes.Results;
         // },
-
     }));
     return (
         <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

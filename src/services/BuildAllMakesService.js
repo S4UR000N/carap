@@ -14,6 +14,8 @@ function BuildAllMakesService() {
         console.log("!if", store.allMakes);
         console.log(!!(store.allMakes));
         if(!!(store.allMakes)) { // zašto moram imati !!() da bi if radio
+            console.log(store.allMakes.Count);
+            console.log(store.getChunkCount(10))
             store.setAllMakesBuild(store.allMakes.Results.map((obj, index) => {
                 return (
                     <MakeRowForMake obj={obj} index={index} key={index} />

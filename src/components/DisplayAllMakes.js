@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table'
 import BuildAllMakesService from "./../services/BuildAllMakesService"
 
 function DisplayAllMakes() {
-    const store = useStore();
+    // const store = useStore();
 
     return(
         <Container fluid>
