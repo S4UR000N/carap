@@ -5,24 +5,29 @@ import StoreContext from "./StoreContext"
 export function StoreProvider({children}) {
     const store = useLocalObservable(() => ({
         allMakes: false,
-        allMakesBuild: false,
+        allMakesTheadBuild: false,
+        allMakesTbodyBuild: false,
         allMakesChunked: false,
+        chunkLength: 5,
         setAllMakes: allMakes => {
             store.allMakes = allMakes;
         },
-        setAllMakesBuild: allMakesBuild => {
-            store.allMakesBuild = allMakesBuild;
+        setallMakesTheadBuild: allMakesTheadBuild => {
+            store.allMakesTheadBuild = allMakesTheadBuild;
+        },
+        setallMakesTbodyBuild: allMakesTbodyBuild => {
+            store.allMakesTbodyBuild = allMakesTbodyBuild;
         },
         setAllMakesChunked: allMakesChunked => {
             store.allMakesChunked = allMakesChunked;
         },
-        getChunkCount: singleChunkLength => {
+        setChunkLength: chunkLength => {
+            store.chunkLength = chunkLength;
+        },
+        calculateChunkCount: singleChunkLength => {
             let chunkCount = Number(store.allMakes.Count) / Number(singleChunkLength);
             return chunkCount.toString().split('.').reduce((acc, val, i) => (i ? Number(acc) + 1 : acc));
-        },
-        // get getResults() {
-        //     return store.allMakes.Results;
-        // },
+        }
     }));
     return (
         <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
