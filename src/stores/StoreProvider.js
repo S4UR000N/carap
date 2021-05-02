@@ -4,15 +4,25 @@ import StoreContext from "./StoreContext"
 
 export function StoreProvider({children}) {
     const store = useLocalObservable(() => ({
+        test: {
+            test1: 1,
+            test2: 2,
+            test3: 3
+        },
         allMakes: false,
         chunkLength: 5,
         allMakesChunked: false,
         allMakesTheadBuild: false,
         allMakesTbodyBuild: false,
-        paginationBuild: false,
-        paginationFirstPageIndex: 0,
-        paginationCurrentPageIndex: 0,
-        paginationLastPageIndex: 0,
+        pagination: {
+            paginationBuild: false,
+            paginationPageCount: 0,
+            paginationFirstPageIndex: 0,
+            paginationCurrentPageIndex: 0,
+            paginationLastPageIndex: 0,
+            paginationCanNext: false,
+            paginationCanPrevious: false,
+        },
 
         setAllMakes: allMakes => {
             store.allMakes = allMakes;

@@ -22,10 +22,9 @@ export default function PaginationComponent(props) {
             <Container fluid>
                 <Row className="justify-content-center">
                     <Pagination size="sm" className="pagination-items justify-content-center flex-wrap">
-                        <Pagination.Item active>{12}</Pagination.Item>
                         <Pagination.Item>{13}</Pagination.Item>
+                        <Pagination.Item active>{12}</Pagination.Item>
                         <Pagination.Item disabled>{14}</Pagination.Item>
-                        <Pagination.Item>{20}</Pagination.Item>
                     </Pagination>
                 </Row>
             </Container>

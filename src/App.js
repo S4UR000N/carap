@@ -4,7 +4,6 @@ import React from "react"
 import {StoreProvider} from "./stores/StoreProvider"
 import HeaderComponent from "./components/Header"
 import DisplayAllMakes from "./components/DisplayAllMakes"
-import logo from './assets/images/logo.jpg'
 
 // import { makeObservable, observable, computed, action } from "mobx"
 
