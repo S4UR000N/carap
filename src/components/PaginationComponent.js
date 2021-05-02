@@ -1,10 +1,11 @@
+import React from "react"
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Pagination from 'react-bootstrap/Pagination'
 import PageItem from 'react-bootstrap/PageItem'
 
-export default function PaginationComponent() {
+export default function PaginationComponent(props) {
     return (
         <>
             <Container fluid>

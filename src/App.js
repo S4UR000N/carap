@@ -2,12 +2,9 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React from "react"
 import {StoreProvider} from "./stores/StoreProvider"
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
-import Header from "./components/Header"
-import DisplayAllMakes from "./components/DisplayAllMakes";
+import HeaderComponent from "./components/Header"
+import DisplayAllMakes from "./components/DisplayAllMakes"
+import logo from './assets/images/logo.jpg'
 
 // import { makeObservable, observable, computed, action } from "mobx"
 
@@ -15,39 +12,7 @@ function App() {
     return (
         <StoreProvider>
             <main className="App">
-                {/* THIS IS JUST A SKETCH, this code wont stay here */}
-                <Container>
-                    <Row className="justify-content-center align-items-center">
-                        {/* 1. Logo */}
-                        <Col className="col-1">
-                            <Header />
-                        </Col>
-
-
-                        {/* 2. Get All Makes */}
-                        <Col className="col-2 align-items-center">
-                            <Row className="justify-content-center"><Button>Get All Makes</Button></Row>
-                        </Col>
-
-                        {/* 3. Get All models */}
-                        <Col className="col-4 border-right">
-                            <Row className="justify-content-center">Get All Models for Make</Row>
-                            <Row className="justify-content-center">
-                                <input className="w-50" placeholder="enter Make(Abbreviation)" />
-                                <Button className="btn-sm">Get</Button>
-                            </Row>
-                            {/* <Row className=""><Button className="btn-sm">Get</Button></Row> */}
-                        </Col>
-
-                        {/* 4. Sort Filter models */}
-                        <Col className="col-3 bg-dark">
-                            <svg className="styleSVG">
-                            <line x1="0" y1="100%" x2="100%" y2="0"
-                                className="styleLine"/>
-                            </svg>
-                        </Col>
-                    </Row>
-                </Container>
+                <HeaderComponent />
                 <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
             </main>
         </StoreProvider>

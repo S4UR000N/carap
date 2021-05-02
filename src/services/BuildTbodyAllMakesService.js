@@ -1,9 +1,8 @@
 import { React, useEffect, useCallback } from "react"
 import {useObserver} from "mobx-react"
 import {useStore} from "./../stores/StoreProvider"
-import MakeRowForMake from "./../components/MakeRowForMake"
-// import PaginationComponent from "./../components/PaginationComponent"
-import SpinnerComponent from "./../components/SpinnerComponent"
+import MakeRowForMake from "./../components/fragments/MakeRowForMake"
+import SpinnerComponent from "./../components/fragments/SpinnerComponent"
 import GetAllMakesAPI from "./../api/GetAllMakesAPI"
 import "./../extensions/ArrayPrototypeChunk"
 

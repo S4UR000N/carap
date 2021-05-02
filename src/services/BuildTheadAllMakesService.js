@@ -1,8 +1,8 @@
 import { React, useEffect, useCallback } from "react"
 import {useObserver} from "mobx-react"
 import {useStore} from "./../stores/StoreProvider"
-import SpinnerComponent from "./../components/SpinnerComponent"
-import TheadForAllMakes from "./../components/TheadForAllMakes"
+import SpinnerComponent from "./../components/fragments/SpinnerComponent"
+import TheadForAllMakes from "./../components/fragments/TheadForAllMakes"
 
 export default function BuildTheadAllMakesService() {
     const store = useStore(); // access mobx store
