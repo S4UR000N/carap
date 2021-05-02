@@ -29,6 +29,7 @@ export default function BuildTbodyAllMakesService() {
         if(!!(store.allMakes)) { // zašto moram imati !!() da bi if radio
             store.setAllMakesChunked(store.allMakes.Results.chunk(store.chunkLength));
             createTableRows(store.allMakesChunked[0]);
+            // setTimeout(() => { createTableRows(store.allMakesChunked[20]) }, 10000);
         }
     },
     [store.allMakes]

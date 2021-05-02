@@ -3,9 +3,9 @@ import React from "react"
 export default function TheadForAllMakes() {
     return (
         <tr>
-            <th>#</th>
-            <th>Make ID</th>
-            <th>Make Name</th>
+            <th className="index">#</th>
+            <th className="make-id">Make ID</th>
+            <th className="make-name">Make Name</th>
         </tr>
     );
 }

@@ -1,4 +1,4 @@
-import {useStore} from "./../stores/StoreProvider"
+// import {useStore} from "./../stores/StoreProvider"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import TableComponent from "./TableComponent"
@@ -7,8 +7,6 @@ import BuildTheadAllMakesService from "./../services/BuildTheadAllMakesService"
 import BuildTbodyAllMakesService from "./../services/BuildTbodyAllMakesService"
 
 function DisplayAllMakes() {
-    // const store = useStore();
-
     return(
         <Container fluid>
             <Row>  {/* <Table striped bordered hover variant="dark"> -- probably good to put table and thead here and get other elements via service */}

@@ -5,12 +5,23 @@ import StoreContext from "./StoreContext"
 export function StoreProvider({children}) {
     const store = useLocalObservable(() => ({
         allMakes: false,
+        chunkLength: 5,
+        allMakesChunked: false,
         allMakesTheadBuild: false,
         allMakesTbodyBuild: false,
-        allMakesChunked: false,
-        chunkLength: 5,
+        paginationBuild: false,
+        paginationFirstPageIndex: 0,
+        paginationCurrentPageIndex: 0,
+        paginationLastPageIndex: 0,
+
         setAllMakes: allMakes => {
             store.allMakes = allMakes;
+        },
+        setChunkLength: chunkLength => {
+            store.chunkLength = chunkLength;
+        },
+        setAllMakesChunked: allMakesChunked => {
+            store.allMakesChunked = allMakesChunked;
         },
         setallMakesTheadBuild: allMakesTheadBuild => {
             store.allMakesTheadBuild = allMakesTheadBuild;
@@ -18,11 +29,23 @@ export function StoreProvider({children}) {
         setallMakesTbodyBuild: allMakesTbodyBuild => {
             store.allMakesTbodyBuild = allMakesTbodyBuild;
         },
-        setAllMakesChunked: allMakesChunked => {
-            store.allMakesChunked = allMakesChunked;
+        setPaginationBuild: paginationBuild => {
+            store.paginationBuild = paginationBuild;
         },
-        setChunkLength: chunkLength => {
-            store.chunkLength = chunkLength;
+        setPaginationFirstPageIndex: paginationFirstPageIndex => {
+            store.paginationFirstPageIndex = paginationFirstPageIndex;
+        },
+        setPaginationCurrentPageIndex: paginationCurrentPageIndex => {
+            store.paginationCurrentPageIndex = paginationCurrentPageIndex;
+        },
+        setPaginationLastPageIndex: paginationLastPageIndex => {
+            store.paginationLastPageIndex = paginationLastPageIndex;
+        },
+        getAllMakesChunkedFirst: () => {
+            return store.allMakesChunked[0];
+        },
+        getAllMakesChunkedLast: () => {
+            return store.allMakesChunked[store.allMakesChunked.length - 1];
         },
         calculateChunkCount: singleChunkLength => {
             let chunkCount = Number(store.allMakes.Count) / Number(singleChunkLength);

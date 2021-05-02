@@ -1,6 +1,33 @@
+:root {
+    --page-background-color: #41B3A3;
+}
+html { background-color: var(--page-background-color); }
+.flex-fill {
+    flex: 1;
+}
 #logo {
     width: 56px;
     height: 46px;
 }
+.styleSVG {
+    width: 100%;
+    height: 100%;
+}
+.styleLine {
+    stroke:rgb(255,255,255);
+    stroke-width: 2;
+}
+.container-fluid { background-color: var(--page-background-color); }
 .table th { text-align: center; }
 .table td { text-align: center; }
+.index { width: 10%; }
+.make-id { width: 20%; }
+.make-name { width: 70%; }
+.pagination-items .page-item:first-child > .page-link {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+.pagination-items .page-item:last-child > .page-link {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}

@@ -7,9 +7,9 @@ import logo from './../assets/images/logo.jpg';
 function Header() {
     return(
         <Container>
-            <Row className="justify-content-center align-items-center mt-2">
-                <h1 className="App-header text-dark mr-2">carap</h1>
+            <Row className="justify-content-center align-items-center">
                 <img id="logo" src={logo} alt="car logo"/>
+                <h1 className="App-header text-dark mr-2">carap</h1>
             </Row>
         </Container>
     );
