@@ -1,6 +1,6 @@
-import { React, useEffect } from "react"
+import {useEffect} from "react"
 import {useObserver} from "mobx-react"
-import {useStore} from "./../stores/StoreProvider"
+import {useStore} from "./../stores/StoreProviderForTable"
 
 function GetAllMakesAPI() {
     const store = useStore();

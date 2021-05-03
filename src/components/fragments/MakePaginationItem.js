@@ -1,9 +1,8 @@
 import React from "react"
 import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
 
 export default function MakePaginationItem(props) {
     return (
-        <Pagination.Item>{props.index+1}</Pagination.Item>
+        <Pagination.Item onClick={() => props.handler(props.index)}>{props.index+1}</Pagination.Item>
     );
 }

@@ -1,7 +1,7 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React from "react"
-import {StoreProvider} from "./stores/StoreProvider"
+import {StoreProviderForTable} from "./stores/StoreProviderForTable"
 import HeaderComponent from "./components/Header"
 import DisplayAllMakes from "./components/DisplayAllMakes"
 
@@ -9,12 +9,12 @@ import DisplayAllMakes from "./components/DisplayAllMakes"
 
 function App() {
     return (
-        <StoreProvider>
-            <main className="App">
+        <main className="App">
+            <StoreProviderForTable>
                 <HeaderComponent />
                 <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
-            </main>
-        </StoreProvider>
+            </StoreProviderForTable>
+        </main>
     );
 }
 

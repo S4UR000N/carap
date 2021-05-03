@@ -1,27 +1,44 @@
+import memoize from "fast-memoize";
 import { React, useEffect, useCallback } from "react"
 import {useObserver} from "mobx-react"
-import {useStore} from "./../stores/StoreProvider"
+import {useStore} from "./../stores/StoreProviderForPagination"
 import MakePaginationItem from "./../components/fragments/MakePaginationItem"
 import SpinnerComponent from "./../components/fragments/SpinnerComponent"
+import MakeRowForMake from "./../components/fragments/MakeRowForMake"
 
 export default function BuildPaginationItemsService() {
     const store = useStore(); // access mobx store
 
+    // callback function used in pagination to display correct table data on page change
+    function createTableRows(index) {
+        store.setPaginationCurrentPageIndex(index);
+        store.setallMakesTbodyBuild(store.allMakesChunked[index].map((obj, index) => {
+            return (
+                <MakeRowForMake obj={obj} index={index} key={index} />
+            );
+        }));
+    }
+    const memoizedCallback = useCallback(
+       memoize((index) => () => createTableRows(index)),
+       []
+     );
     /** called after api fetch
      * chunks all makes into smaller chunks for bootstrap pagination to use with table
      */
     useEffect(() => {
-        if(!!(store.allMakes)) { // zašto moram imati !!() da bi if radio
-            store.setAllMakesChunked(
-                arr => {
-                    store.setPaginationBuild(arr.map((obj, index) => {
-                        return (
-                            <MakeRowForMake obj={obj} index={index} key={index} />
-                        );
-                    })
-            );
-            createTableRows(store.allMakesChunked[0]);
-            // setTimeout(() => { createTableRows(store.allMakesChunked[20]) }, 10000);
+        if(!!(store.allMakes)) {
+            // set pagination data
+            store.setPaginationPageCount(store.allMakesChunked.length);
+            store.setPaginationFirstPageIndex(store.allMakesChunked.indexOf(store.getAllMakesChunkedFirst()));
+            store.setPaginationCurrentPageIndex(store.pagination.paginationFirstPageIndex);
+            store.setPaginationLastPageIndex(store.allMakesChunked.indexOf(store.getAllMakesChunkedLast()));
+
+            // create pages
+            store.setPaginationBuild(store.allMakesChunked.map((obj, index) => {
+                return (
+                    <MakePaginationItem obj={obj} index={index} key={index} handler={memoizedCallback} />
+                );
+            }));
         }
     },
     [store.allMakes]
@@ -31,8 +48,8 @@ export default function BuildPaginationItemsService() {
         <>
             {
                 store.allMakes.Results
-                ? <>{store.allMakesTbodyBuild}</>
-                : <><tr><td style={{ textAlign: "center" }}><SpinnerComponent /></td></tr></>
+                ? <>{store.pagination.paginationBuild}</>
+                : <SpinnerComponent />
             }
         </>
     ));

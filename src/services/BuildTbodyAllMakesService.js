@@ -1,6 +1,6 @@
 import { React, useEffect, useCallback } from "react"
 import {useObserver} from "mobx-react"
-import {useStore} from "./../stores/StoreProvider"
+import {useStore} from "./../stores/StoreProviderForTable"
 import MakeRowForMake from "./../components/fragments/MakeRowForMake"
 import SpinnerComponent from "./../components/fragments/SpinnerComponent"
 import GetAllMakesAPI from "./../api/GetAllMakesAPI"
@@ -18,7 +18,7 @@ export default function BuildTbodyAllMakesService() {
             );
         }));
     },
-    []
+    [store.paginationCurrentPageIndex]
     );
 
     /** called after api fetch
