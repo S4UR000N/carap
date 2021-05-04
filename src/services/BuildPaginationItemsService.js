@@ -1,7 +1,7 @@
 import memoize from "fast-memoize";
 import { React, useEffect, useCallback } from "react"
 import {useObserver} from "mobx-react"
-import {useStore} from "./../stores/StoreProviderForPagination"
+import {useStore} from "./../stores/StoreProvider"
 import MakePaginationItem from "./../components/fragments/MakePaginationItem"
 import SpinnerComponent from "./../components/fragments/SpinnerComponent"
 import MakeRowForMake from "./../components/fragments/MakeRowForMake"
@@ -35,6 +35,8 @@ export default function BuildPaginationItemsService() {
 
             // create pages
             store.setPaginationBuild(store.allMakesChunked.map((obj, index) => {
+                console.log("huh?");
+
                 return (
                     <MakePaginationItem obj={obj} index={index} key={index} handler={memoizedCallback} />
                 );

@@ -1,19 +1,19 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React from "react"
-import {StoreProviderForTable} from "./stores/StoreProviderForTable"
 import HeaderComponent from "./components/Header"
 import DisplayAllMakes from "./components/DisplayAllMakes"
+import {StoreProvider} from "./stores/StoreProvider"
 
 // import { makeObservable, observable, computed, action } from "mobx"
 
 function App() {
     return (
         <main className="App">
-            <StoreProviderForTable>
+            <StoreProvider>
                 <HeaderComponent />
                 <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
-            </StoreProviderForTable>
+            </StoreProvider>
         </main>
     );
 }

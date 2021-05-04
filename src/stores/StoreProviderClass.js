@@ -1,6 +1,5 @@
 import React from "react";
 import { action, observable } from "mobx";
-import StoreContext from "./StoreContext"
 
 /* Store start */
 export default class Store {
