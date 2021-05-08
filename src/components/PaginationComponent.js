@@ -20,7 +20,7 @@ export default function PaginationComponent(props) {
             <Container fluid>
                 <Row className="justify-content-center">
                     <Pagination size="sm" className="pagination-items justify-content-center flex-wrap">
-                        {props.buildPitems()}
+                        {props.buildPaginationItems}
                     </Pagination>
                 </Row>
             </Container>

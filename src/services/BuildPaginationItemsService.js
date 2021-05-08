@@ -1,58 +1,22 @@
-import memoize from "fast-memoize";
-import { React, useEffect, useCallback } from "react"
-import {useObserver} from "mobx-react"
-import {useStore} from "./../stores/StoreProvider"
+import React from "react"
+import {observer} from "mobx-react"
+import {useStoreApp} from "./../stores/StoreApp";
+import {useStorePagination} from "./../stores/StoreMobxPagination";
+import GetAllMakesAPI from "./../api/GetAllMakesAPI"
 import MakePaginationItem from "./../components/fragments/MakePaginationItem"
 import SpinnerComponent from "./../components/fragments/SpinnerComponent"
 import MakeRowForMake from "./../components/fragments/MakeRowForMake"
 
-export default function BuildPaginationItemsService() {
-    const store = useStore(); // access mobx store
-
-    // callback function used in pagination to display correct table data on page change
-    function createTableRows(index) {
-        store.setPaginationCurrentPageIndex(index);
-        store.setallMakesTbodyBuild(store.allMakesChunked[index].map((obj, index) => {
-            return (
-                <MakeRowForMake obj={obj} index={index} key={index} />
-            );
-        }));
-    }
-    const memoizedCallback = useCallback(
-       memoize((index) => () => createTableRows(index)),
-       []
-     );
-    /** called after api fetch
-     * chunks all makes into smaller chunks for bootstrap pagination to use with table
-     */
-    useEffect(() => {
-        if(!!(store.allMakes)) {
-            // set pagination data
-            store.setPaginationPageCount(store.allMakesChunked.length);
-            store.setPaginationFirstPageIndex(store.allMakesChunked.indexOf(store.getAllMakesChunkedFirst()));
-            store.setPaginationCurrentPageIndex(store.pagination.paginationFirstPageIndex);
-            store.setPaginationLastPageIndex(store.allMakesChunked.indexOf(store.getAllMakesChunkedLast()));
-
-            // create pages
-            store.setPaginationBuild(store.allMakesChunked.map((obj, index) => {
-                console.log("huh?");
-
-                return (
-                    <MakePaginationItem obj={obj} index={index} key={index} handler={memoizedCallback} />
-                );
-            }));
-        }
-    },
-    [store.allMakes]
+export const BuildPaginationItemsService = observer(() => {
+    const storeApp = useStoreApp();
+    const storePagination = useStorePagination();
+    GetAllMakesAPI();
+    return (
+        <div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
     );
-
-    return useObserver(() => (
-        <>
-            {
-                store.allMakes.Results
-                ? <>{store.pagination.paginationBuild}</>
-                : <SpinnerComponent />
-            }
-        </>
-    ));
-}
+});

@@ -2,20 +2,25 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React from "react"
 import StoreApp, {StoreAppProvider} from "./stores/StoreApp";
-import {StoreProvider} from "./stores/StoreProvider"
+import StoreMobxTable, {StoreMobxTableProvider} from "./stores/StoreMobxTable";
+import StoreMobxPagination, {StoreMobxPaginationProvider} from "./stores/StoreMobxPagination";
 import HeaderComponent from "./components/Header"
 import DisplayAllMakes from "./components/DisplayAllMakes"
 
 const storeApp = new StoreApp();
+const storeMobxTable = new StoreMobxTable();
+const storeMobxPagination = new StoreMobxPagination();
 
 function App() {
     return (
         <main className="App">
             <StoreAppProvider store={storeApp}>
-                <StoreProvider>
                     <HeaderComponent />
-                    <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
-                </StoreProvider>
+                    <StoreMobxPaginationProvider store={storeMobxPagination}>
+                        <StoreMobxTableProvider store={storeMobxTable}>
+                            <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
+                        </StoreMobxTableProvider>
+                    </StoreMobxPaginationProvider>
             </StoreAppProvider>
         </main>
     );
