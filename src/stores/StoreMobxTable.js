@@ -37,6 +37,6 @@ export const StoreMobxTableProvider = ({ children, store }) => {
 export const useStoreTable = () => React.useContext(StoreContext);
 
 /* HOC to inject store to any functional or class component */
-export const withStore = (Component) => (props) => {
+export const withStoreTable = (Component) => (props) => {
   return <Component {...props} store={useStoreTable()} />;
 };

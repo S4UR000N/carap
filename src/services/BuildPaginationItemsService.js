@@ -8,15 +8,17 @@ import SpinnerComponent from "./../components/fragments/SpinnerComponent"
 import MakeRowForMake from "./../components/fragments/MakeRowForMake"
 
 export const BuildPaginationItemsService = observer(() => {
-    const storeApp = useStoreApp();
-    const storePagination = useStorePagination();
     GetAllMakesAPI();
+    const storePagination = useStorePagination();
+
     return (
-        <div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-        </div>
+        <>
+            {
+                // storePagination.appStore.store.allMakes
+                // ? <SpinnerComponent/>
+                // : <SpinnerComponent/>
+                <SpinnerComponent/>
+            }
+        </>
     );
 });

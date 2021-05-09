@@ -58,6 +58,6 @@ export const StoreAppProvider = ({ children, store }) => {
 export const useStoreApp = () => React.useContext(StoreContext);
 
 /* HOC to inject store to any functional or class component */
-export const withStore = (Component) => (props) => {
+export const withStoreApp = (Component) => (props) => {
   return <Component {...props} store={useStoreApp()} />;
 };

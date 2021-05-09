@@ -1,9 +1,14 @@
 import React from "react";
 import { makeAutoObservable, observable, computed, action } from "mobx"
+import {withStoreApp} from "./StoreApp";
+
 
 /* Store start */
 export default class StoreMobxPagination {
-    constructor() {makeAutoObservable(this)};
+    constructor(storeApp) {
+        this.storeApp = storeApp;
+        makeAutoObservable(this);
+    };
 
     /* Properties */
     store = {
@@ -31,6 +36,8 @@ export default class StoreMobxPagination {
 
     /* Actions */
     /* Computeds */
+    get paginationBuild() {return this.store.paginationBuild};
+
 }
 /* Store end */
 
@@ -48,6 +55,6 @@ export const StoreMobxPaginationProvider = ({ children, store }) => {
 export const useStorePagination = () => React.useContext(StoreContext);
 
 /* HOC to inject store to any functional or class component */
-export const withStore = (Component) => (props) => {
+export const withStorePagination = (Component) => (props) => {
   return <Component {...props} store={useStorePagination()} />;
 };
