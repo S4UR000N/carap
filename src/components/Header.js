@@ -3,7 +3,6 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import logo from './../assets/images/logo.jpg';
-import GetAllMakesAPI from "./../api/GetAllMakesAPI"
 
 export default function Header() {
     return(

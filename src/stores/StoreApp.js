@@ -2,7 +2,6 @@ import React from "react";
 import { makeAutoObservable, observable, computed, action, flow } from "mobx"
 import "./../extensions/ArrayPrototypeChunk"
 
-
 /* Store start */
 export default class StoreApp {
     constructor() {
@@ -27,9 +26,13 @@ export default class StoreApp {
     set setStore(obj) {this.store = {...this.store, ...obj}};
 
     /* Getters */
-    get allMakesChunked() {return this.store.allMakesChunked};
+    get getAllMakesChunked() {return this.store.allMakesChunked};
 
     /* Actions */
+    setAllMakesChunked() {
+        this.setStore = {allMakesChunked: this.store.allMakes.chunk(this.store.chunkLength)};
+    }
+
     /* Computeds */
 
     /* API Requests */
@@ -38,7 +41,8 @@ export default class StoreApp {
             const allMakesFetch = yield fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json");
             const allMakesData = yield allMakesFetch.json();
             const allMakes = yield allMakesData.Results;
-            this.setStore = {allMakes: allMakes};
+            yield this.setStore = {allMakes: allMakes};
+            yield this.setAllMakesChunked();
         } catch (error) {throw error};
     };
 }

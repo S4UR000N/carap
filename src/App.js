@@ -9,18 +9,18 @@ import DisplayAllMakes from "./components/DisplayAllMakes"
 
 const storeApp = new StoreApp();
 const storeMobxTable = new StoreMobxTable();
-const storeMobxPagination = new StoreMobxPagination(storeApp);
+const storeMobxPagination = new StoreMobxPagination(storeApp, storeMobxTable);
 
 function App() {
     return (
         <main className="App">
             <StoreAppProvider store={storeApp}>
-                <StoreMobxPaginationProvider store={storeMobxPagination}>
-                    <StoreMobxTableProvider store={storeMobxTable}>
+                <StoreMobxTableProvider store={storeMobxTable}>
+                    <StoreMobxPaginationProvider store={storeMobxPagination}>
                         <HeaderComponent />
                         <DisplayAllMakes /> {/* // this should be conditional depending if person needs all makes if person types in custom make car models should be rendered instantly */}
-                    </StoreMobxTableProvider>
-                </StoreMobxPaginationProvider>
+                    </StoreMobxPaginationProvider>
+                </StoreMobxTableProvider>
             </StoreAppProvider>
         </main>
     );
