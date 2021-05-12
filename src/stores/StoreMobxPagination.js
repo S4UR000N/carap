@@ -1,6 +1,8 @@
 import React from "react";
 import { makeAutoObservable, observable, computed, action,  reaction, when } from "mobx"
 import {withStoreApp} from "./StoreApp";
+import MakePaginationItem from "./../components/fragments/MakePaginationItem"
+
 
 /* Store start */
 export default class StoreMobxPagination {
@@ -41,13 +43,14 @@ export default class StoreMobxPagination {
     /* Computeds */
     get paginationPageIsActive() {};
     get paginationBuild() {
-        console.log(this.storeApp.getAllMakesChunked);
-        console.log(this.getPaginationPageCount);
-        // return this.getPaginationPageCount.map((obj, index) => {
-        //     return <div key={index}>{obj}</div>
-        // })
-         // console.log(this.storeApp.getAllMakesChunked[0]);
-        // .map((obj, index) => <MakeRowForMake obj={obj} index={index} key={index} />)
+        return (
+            Array.apply(null, Array(this.getPaginationPageCount)).map((_, i) =>
+                <MakePaginationItem
+                    key={i} index={i}
+                    active={this.getPaginationCurrentPageIndex == i ? true : false}
+                />
+            )
+        );
     };
 
     /* Disposer function */
