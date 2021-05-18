@@ -18,7 +18,7 @@ export default class StoreApp {
     store = {
         allMakes: false,
         allMakesChunked: false,
-        chunkLength: 10,
+        chunkLength: 500,
         error: false,
     };
 

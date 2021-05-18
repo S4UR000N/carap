@@ -1,6 +1,7 @@
 import React from "react";
 import { makeAutoObservable, observable, computed, action,  reaction, when } from "mobx"
 import {withStoreApp} from "./StoreApp";
+import Range from "./../extensions/Range"
 import MakePaginationItem from "./../components/fragments/MakePaginationItem"
 
 
@@ -26,8 +27,7 @@ export default class StoreMobxPagination {
     store = {
         paginationPageCount: false,
         paginationCurrentPageIndex: 0,
-        paginationCanNext: false,
-        paginationCanPrevious: false,
+        paginationSize: 10
     };
 
     /* Setters */
@@ -36,19 +36,35 @@ export default class StoreMobxPagination {
     /* Getters */
     get getPaginationPageCount() {return this.store.paginationPageCount};
     get getPaginationCurrentPageIndex() {return this.store.paginationCurrentPageIndex};
-    get getPaginationCanNext() {return this.store.paginationCanNext};
-    get getPaginationCanPrevious() {return this.store.paginationCanPrevious};
+    get getPaginationSize() { return this.store.paginationSize};
+    get getPaginationCanFirst() {return this.getPaginationCurrentPageIndex === 0 ? 'disabled' : ''};
+    get getPaginationCanLast() {return (this.getPaginationCurrentPageIndex === (this.getPaginationPageCount-1)) ? 'disabled' : ''};
 
     /* Actions */
     /* Computeds */
     get paginationPageIsActive() {};
+    get paginationRange() {
+        if(this.getPaginationCurrentPageIndex < Math.ceil(this.getPaginationSize/2)) {
+            console.log("first");
+            return Range(0, (this.getPaginationSize - 1), 1);
+        }
+        else if(this.getPaginationCurrentPageIndex > (this.getPaginationPageCount - this.getPaginationSize - 1)) {
+            console.log("second");
+            return Range((this.getPaginationPageCount - this.getPaginationSize), (this.getPaginationPageCount - 1), 1);
+        }
+        else {
+            console.log("third");
+            return Range((this.getPaginationCurrentPageIndex - 5), (this.getPaginationCurrentPageIndex + 4), 1);
+        }
+    }
     get paginationBuild() {
         return (
-            Array.apply(null, Array(this.getPaginationPageCount)).map((_, i) =>
+            this.paginationRange.map(i =>
                 <MakePaginationItem
                     key={i} index={i}
                     active={this.getPaginationCurrentPageIndex == i ? true : false}
                 />
+
             )
         );
     };
@@ -77,3 +93,43 @@ export const useStorePagination = () => React.useContext(StoreContext);
 export const withStorePagination = (Component) => (props) => {
   return <Component {...props} store={useStorePagination()} />;
 };
+
+
+/*
+let paginationPageCount = 10;
+let paginationCurrentPageIndex = 9;
+let paginationSize = 10;
+
+let paginationItems = [];
+let output = "";
+
+// populate pagination Items
+for(let i = 0; i < paginationPageCount; i++) {
+  paginationItems.push(i + 1)
+};
+
+
+// ako imamo manje ili jednako elemenata od 10 (page size) ispisi sve
+if(paginationPageCount <= paginationSize) {
+  for (const value of paginationItems) {
+    output += `<div>${value}</div>`;
+  }
+}
+// ukoliko se index+1 nalazi u posljednjih 10 elemenata ispisi sve preostale
+else if(paginationCurrentPageIndex > (paginationPageCount - paginationSize - 1)) {
+  let pr = range((paginationPageCount - paginationSize + 1), paginationPageCount, 1);
+  for(const value of pr) {
+    output += `<div>${value}</div>`;
+  }
+}
+//
+else {
+	let pr = range((paginationCurrentPageIndex - 4), (paginationCurrentPageIndex + 5), 1);
+  for(const value of pr) {
+    output += `<div>${value}</div>`;
+  }
+}
+
+// display
+document.querySelector("#output").innerHTML = output;
+*/

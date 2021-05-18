@@ -3,7 +3,10 @@ import { makeAutoObservable, observable, computed, action } from "mobx"
 
 /* Store start */
 export default class StoreMobxTable {
-    constructor() {makeAutoObservable(this)};
+    constructor(storeApp, storeMobxTable) {
+        this.storeApp = storeApp;
+        makeAutoObservable(this);
+    };
 
     /* Properties */
     store = {
