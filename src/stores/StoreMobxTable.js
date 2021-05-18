@@ -1,28 +1,36 @@
 import React from "react";
-import { makeAutoObservable, observable, computed, action } from "mobx"
+import { makeAutoObservable, observable, computed, action,  reaction, when } from "mobx"
 
 /* Store start */
 export default class StoreMobxTable {
-    constructor(storeApp, storeMobxTable) {
+    constructor(storeApp) {
         this.storeApp = storeApp;
+        // this.disposeReaction = reaction(
+        //     () => this.storeApp.getAllMakesChunked,
+        //     getAllMakesChunked => null
+        // );
+        // when(
+        //     // Once...
+        //     () => this.storeApp.getAllMakesChunked,
+        //     // ... then.
+        //     () => this.disposer()
+        // );
         makeAutoObservable(this);
     };
 
     /* Properties */
-    store = {
-        allMakesTheadBuild: false,
-        allMakesTbodyBuild: false,
-    };
+    store = {};
 
     /* Setters */
     set setStore(obj) {this.store = {...this.store, ...obj}};
 
     /* Getters */
-    get allMakesTheadBuild() {return this.store.allMakesTheadBuild};
-    get allMakesTbodyBuild() {return this.store.allMakesTbodyBuild};
-
     /* Actions */
     /* Computeds */
+    /* Disposer function */
+    // disposer() {
+    //     this.disposeReaction();
+    // }
 }
 /* Store end */
 

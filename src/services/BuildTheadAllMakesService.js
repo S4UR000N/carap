@@ -1,12 +1,17 @@
 import React from "react"
-import {useObserver} from "mobx-react"
-import SpinnerComponent from "./../components/fragments/SpinnerComponent"
+import {observer} from "mobx-react"
+import {useStoreTable} from "./../stores/StoreMobxTable";
 import TheadForAllMakes from "./../components/fragments/TheadForAllMakes"
+import SpinnerComponent from "./../components/fragments/SpinnerComponent"
 
-export default function BuildTheadAllMakesService() {
-    return useObserver(() => (
-        <>
-            {}
-        </>
-    ));
-}
+const BuildTheadAllMakesService = observer(() => {
+    const storeTable = useStoreTable();
+
+    return (
+        storeTable.storeApp.store.allMakesChunked
+        ? <TheadForAllMakes/>
+        : <><tr><td style={{ textAlign: "center" }}><SpinnerComponent /></td></tr></>
+    );
+});
+
+export default BuildTheadAllMakesService

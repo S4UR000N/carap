@@ -1,9 +1,9 @@
 import React from "react"
+import {observer} from 'mobx-react'
+import {useStorePagination} from "./../stores/StoreMobxPagination"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Pagination from 'react-bootstrap/Pagination'
-import {observer} from 'mobx-react'
-import {useStorePagination} from "./../stores/StoreMobxPagination"
 
 const PaginationComponent = observer((props) => {
     const storePagination = useStorePagination();

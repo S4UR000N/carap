@@ -8,4 +8,4 @@ export default function TheadForAllMakes() {
             <th className="make-name">Make Name</th>
         </tr>
     );
-}
+};

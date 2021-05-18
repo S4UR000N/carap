@@ -8,10 +8,10 @@ import HeaderComponent from "./components/Header"
 import DisplayAllMakes from "./components/DisplayAllMakes"
 
 const storeApp = new StoreApp();
-const storeMobxTable = new StoreMobxTable();
+const storeMobxTable = new StoreMobxTable(storeApp);
 const storeMobxPagination = new StoreMobxPagination(storeApp, storeMobxTable);
 
-function App() {
+export default function App() {
     return (
         <main className="App">
             <StoreAppProvider store={storeApp}>
@@ -24,9 +24,7 @@ function App() {
             </StoreAppProvider>
         </main>
     );
-}
-
-export default App;
+};
 
 /*
 1. Get All Makes

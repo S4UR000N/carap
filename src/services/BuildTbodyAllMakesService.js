@@ -1,25 +1,13 @@
-import { React, useEffect, useCallback } from "react"
-import {useObserver} from "mobx-react"
-import {useStoreApp} from "./../stores/StoreApp";
+import React from "react"
+import {observer} from "mobx-react"
 import {useStoreTable} from "./../stores/StoreMobxTable";
-import GetAllMakesAPI from "./../api/GetAllMakesAPI"
-import MakeRowForMake from "./../components/fragments/MakeRowForMake"
-import SpinnerComponent from "./../components/fragments/SpinnerComponent"
-import "./../extensions/ArrayPrototypeChunk"
 
-export default function BuildTbodyAllMakesService() {
-    const useStoreApp = useStoreApp();
-    const useStoreTable = useStoreTable();
+const BuildTbodyAllMakesService = observer(() => {
+    const storeTable = useStoreTable();
 
-    console.log(useStoreTable);
+    return null;
+});
 
-    return useObserver(() => (
-        <>
-            {
-                useStoreTable.storeApp.store.allMakesChunked
-                ? <>{useStoreApp.allMakesTbodyBuild}</>
-                : <><tr><td style={{ textAlign: "center" }}><SpinnerComponent /></td></tr></>
-            }
-        </>
-    ));
-}
+export default BuildTbodyAllMakesService;
+
+// : <><tr><td style={{ textAlign: "center" }}><SpinnerComponent /></td></tr></>
