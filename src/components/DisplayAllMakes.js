@@ -1,4 +1,3 @@
-// import {useStore} from "./../stores/StoreProvider"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import TableComponent from "./TableComponent"
