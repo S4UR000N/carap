@@ -55,15 +55,16 @@ export default class StoreMobxPagination {
             console.log("third");
             return Range((this.getPaginationCurrentPageIndex - 5), (this.getPaginationCurrentPageIndex + 4), 1);
         }
-    }
+    };
     get paginationBuild() {
         return (
             this.paginationRange.map(i =>
                 <MakePaginationItem
                     key={i} index={i}
                     active={this.getPaginationCurrentPageIndex == i ? true : false}
+                    handleMobxTableData={() => this.storeMobxTable.setAllMakesTableBodyBuild(i)}
+                    handleMobxPaginationCurrentIndex={() => this.setStore = {paginationCurrentPageIndex: i}}
                 />
-
             )
         );
     };
@@ -71,7 +72,7 @@ export default class StoreMobxPagination {
     /* Disposer function */
     disposer() {
         this.disposeReaction();
-    }
+    };
 }
 /* Store end */
 
